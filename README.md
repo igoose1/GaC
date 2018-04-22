@@ -38,7 +38,7 @@ cp gacpp/gacpp.sublime-build $HOME/.config/sublime-text-3/Packages/User/
 ## Использование
 
 
-### Изменение версии C++
+### Версия C++
 
 Измените переменную `C++_VERSION` для [нужной вам версии](https://gcc.gnu.org/projects/cxx-status.html).
 
