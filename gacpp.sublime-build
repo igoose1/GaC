@@ -1,0 +1,47 @@
+{
+    "env": {
+        "USER_PARAMS": "-DGA",
+
+        "C++_VERSION": "c++14",
+        // "C++_VERSION": "c++17",
+
+        "LIBSTD_DEBUG_PARAMS": "-D_GLIBCXX_DEBUG",
+        "DEBUG_PARAMS": "-O0 -g",
+
+        "OPTIMIZATION_PARAMS": "-O2",
+        // "OPTIMIZATION_PARAMS": "-Ofast",
+
+        "WARNING_PARAMS": "-pedantic -Wall -Wextra -Wdisabled-optimization -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wredundant-decls -Werror -Wno-unused",
+        // "WARNING_PARAMS": "-Wall -Wextra",
+
+        "WAIT": "read -n1 -s",
+        // "WAIT": "read -s",
+
+        "TERMINAL": "terminator",
+        // "TERMINAL": "xterm",
+
+        "DEFAULT_INPUT_FILE_NAME": "input.txt",
+        "DEFAULT_OUTPUT_FILE_NAME": "output.txt"
+    },
+
+
+    "selector": "source.c++",
+    "working_dir": "$file_path",
+
+    "shell_cmd": "g++ \"$file\" -o \"$file_path/$file_base_name.o\"",
+
+    "variants": [
+        {
+            "name": "Run",
+            "shell_cmd": "g++ \\$USER_PARAMS \"$file\" -o \"$file_path/$file_base_name.o\" && \\$TERMINAL -e \"time \"$file_path/$file_base_name.o\"; \\$WAIT\""
+        },
+        {
+            "name": "Run - tmp",
+            "shell_cmd": "g++ \\$USER_PARAMS \"$file\" -o \"/tmp/$file_base_name.o\" && \\$TERMINAL -e \"time \"\"/tmp/$file_base_name.o\"\"; \\$WAIT\""
+        },
+        {
+            "name": "Run - debug",
+            "shell_cmd": "g++ \\$USER_PARAMS \\$DEBUG_PARAMS \"$file\" -o \"$file_path/$file_base_name.d\" && \\$TERMINAL -e \"gdbtui \"$file_path/$file_base_name.d\"\""
+        }
+    ]
+}
